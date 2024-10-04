@@ -5,13 +5,16 @@ app.use(express.json());
 
 // routes
 const tasksRoutes = require("./routes/tasks");
+const usersRoutes = require("./routes/users");
 
+// conxão com o banco de dados
 const conn = require('./database/conn');
 
 const { port } = require('./configs/env');
 
 const PORT = port || 3000;
 
+app.use('/users', usersRoutes);
 app.use('/tasks', tasksRoutes);
 
 

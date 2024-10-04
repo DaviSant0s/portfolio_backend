@@ -1,28 +1,28 @@
 const Task = require('../model/tasks');
 
-// Listar certificações
+// Listar tasks
 const list = (req, res) => {
-  res.send("Listagem");
+  res.send("Listagem de tasks");
 }
 
-// Busca uma certificação pelo id
+// Busca uma task pelo id
 const getById = (req, res) => {
-  res.send("busca por id");
+  res.send("busca task por id");
 }
 
-// Criar uma certificação pelo id
+// Criar uma taks pelo id
 const create = (req, res) => {
-  res.send("criar uma certificação");
+  res.send("criar uma task");
 }
 
-// Alterar uma certificação pelo id
+// Alterar uma task pelo id
 const update = (req, res) => {
-  res.send("Alterar uma certificação");
+  res.send("Alterar uma task");
 }
 
-// Remover uma certificação
+// Remover uma task
 const remove = (req, res) => {
-  res.send("Remover uma certificação");
+  res.send("Remover uma task");
 }
 
 module.exports = {

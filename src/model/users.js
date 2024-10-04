@@ -1,8 +1,7 @@
 const db = require('../database/conn');
 const { DataTypes } = require('sequelize');
-const User = require('./users');
 
-const Task = db.define('Task', {
+const User = db.define('User', {
 
   id: {
     type: DataTypes.INTEGER,
@@ -10,20 +9,27 @@ const Task = db.define('Task', {
     autoIncrement: true
   },
 
-  title: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: true,
   },
 
-  status: {
-    type: DataTypes.ENUM('pendente', 'em andamento', 'concluida'),
-    allowNull: true
+  email: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true
   },
+
+  password: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true
+  }
 
 });
 
-User.hasMany(Task);
-Task.belongsTo(User);
 
-module.exports = Task;
+
+
+module.exports = User;
 
