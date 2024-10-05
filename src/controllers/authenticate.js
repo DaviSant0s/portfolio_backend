@@ -6,7 +6,7 @@ const { JWT_SECRET } = require('../configs/env');
 
 const login = async (req, res) => {
   
-  const { email, password, id } = req.body;
+  const { email, password} = req.body;
 
   const loginErrorMessage = {
     error: "@authenticate/login",
@@ -15,6 +15,7 @@ const login = async (req, res) => {
 
   try {
     const user = await User.findOne({raw: true, where: {email: email}});
+    const id = user.id;
 
     if (!user) throw new Error("Usuário não encontrado!");
 
