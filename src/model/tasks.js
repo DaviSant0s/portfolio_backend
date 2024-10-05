@@ -12,12 +12,12 @@ const Task = db.define('Task', {
 
   title: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 
   status: {
     type: DataTypes.ENUM('pendente', 'em andamento', 'concluida'),
-    allowNull: true
+    allowNull: false
   },
 
 });

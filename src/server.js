@@ -19,7 +19,7 @@ app.use('/authenticate', authenticateRoutes);
 app.use('/users', usersRoutes);
 app.use('/tasks', tasksRoutes);
 
-conn.sync()
+conn.sync({ force: true })
 .then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

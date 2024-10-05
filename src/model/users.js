@@ -9,20 +9,20 @@ const User = db.define('User', {
     autoIncrement: true
   },
 
-  nome: {
+  name: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 
   email: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
     unique: true
   },
 
   password: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
     unique: true
   }
 
