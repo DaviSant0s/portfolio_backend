@@ -10,19 +10,33 @@ const getById = (req, res) => {
   res.send("busca task por id");
 }
 
-// Criar uma taks pelo id
+// Criar uma taks pelo
 const create = async (req, res) => {
-  const { UserId, title, status } = req.body;
+  const { title, status} = req.body;
+  const UserId = req.id;
+
+  const errorCreatingTaskMessage = (message) => {
+    return {
+      error: "@tasks/create",
+      message: message
+    };
+  }
+
+  if(!title) return res.status(400).json(errorCreatingTaskMessage('Title is required'));
+  if(!status) return res.status(400).json(errorCreatingTaskMessage('Status is required'));
 
   try {
 
-    const task = await Task.create(UserId, title, status);
+    const task = await Task.create({title, status, UserId});
+
+    if(!task) throw new Error();
+
     return res.status(201).json(task);
 
   } catch (error) {
     return res.status(400).json({
       error: '@tasks/create',
-      message: error.message || 'Erro ao criar a tarefa!',
+      message: error.message || 'Task creation failed',
     });
   }
 

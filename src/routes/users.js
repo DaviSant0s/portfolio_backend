@@ -10,7 +10,7 @@ routes.get("/", usersController.list);
 // criação
 routes.post("/", usersController.create);
 
-// listar uma certificação específica
+// listar um usuário específico
 routes.get("/:id", usersController.getById);
 
 // edição

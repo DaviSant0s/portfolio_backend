@@ -3,34 +3,45 @@ const User = require('../model/users');
 const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = require('../configs/env');
+const { compareHash } = require('../utils/hashProvider');
 
 const login = async (req, res) => {
-  
+
   const { email, password} = req.body;
 
-  const loginErrorMessage = {
-    error: "@authenticate/login",
-    message: "Email ou senha inválido!"
-  };
+  const loginErrorMessage = (message) => {
+    return {
+      error: "@authenticate/login",
+      message: message
+    };
+  }
+
+  if(!email) return res.status(400).json(loginErrorMessage("Email is required"));
+  if(!password) return res.status(400).json(loginErrorMessage("Password is required"));
 
   try {
     const user = await User.findOne({raw: true, where: {email: email}});
+    
+    if (!user) throw new Error();
+
+    const isValidPassword = await compareHash(password, user.password);
+
+    if(!isValidPassword) throw new Error();
+    
     const id = user.id;
-
-    if (!user) throw new Error("Usuário não encontrado!");
-
-    if (!(user.password === password)) throw new Error();
-
+  
     const token = jwt.sign({ id }, JWT_SECRET, {
-      expiresIn: 300 // 5min
+      expiresIn: 1000
     });
 
-    return res.status(200).json({...user, token: token});
+    return res.status(200).json({...user, token});
 
   } catch (error) {
-    return res.status(400).json(loginErrorMessage);
+    return res.status(400).json({
+      error: "@authenticate/login",
+      message: error.message || "Authentication failed"
+    });
   }
-
 }
 
 module.exports = {

@@ -1,6 +1,8 @@
 const db = require('../database/conn');
 const { DataTypes } = require('sequelize');
 
+const { generateHash } = require('../utils/hashProvider');
+
 const User = db.define('User', {
 
   id: {
@@ -28,8 +30,9 @@ const User = db.define('User', {
 
 });
 
-
-
+User.beforeCreate( async (user) => {
+  const hashedPassword = await generateHash(user.password);
+  user.password = hashedPassword;
+});
 
 module.exports = User;
-

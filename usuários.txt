@@ -1,0 +1,62 @@
+-> davi
+{
+	"title": "Estudar para a prova de cálculo",
+	"status": "pendente"
+}
+{
+	"title": "Implementar a solução para o problema dos filósofos",
+	"status": "em andamento"
+}
+{
+	"title": "Completar o relatório sobre o RCA Somador/Subtrator",
+	"status": "concluida"
+}
+
+-> joao
+{
+	"title": "Preparar a apresentação de projeto",
+	"status": "concluida"
+}
+{
+	"title": "Finalizar o trabalho de grupo",
+	"status": "em andamento"
+}
+{
+	"title": "Estudar para a prova de linguagens de programação",
+	"status": "em andamento"
+}
+
+->suelen
+{
+	"title": "Organizar o evento de captação de alunos",
+	"status": "em andamento"
+}
+{
+	"title": "Escrever o relatório de estágio",
+	"status": "pendente"
+}
+{
+	"title": "Revisar o material de aula",
+	"status": "concluida"
+}
+
+
+
+'pendente', 'em andamento', 'concluida'
+
+
+
+usuários
+
+{
+	"email": "davi@gmail.com",
+	"password": "davi2427571.16"
+}
+{
+	"email": "joao@gmail.com",
+	"password": "joao2427571.16"
+}
+{
+	"email": "suelen@gmail.com",
+	"password": "suelen2427571.16"
+}

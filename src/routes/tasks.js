@@ -5,13 +5,13 @@ const tasksController = require('../controllers/tasks');
 const { verifyAuthentication } = require('../middlewares/verifyAuthentication');
 
 // listagem 
-routes.get("/", tasksController.list);
+routes.get("/", verifyAuthentication, tasksController.list);
 
 // criação
 routes.post("/", verifyAuthentication, tasksController.create);
 
 // listar uma certificação específica
-routes.get("/:id", tasksController.getById);
+routes.get("/:id", verifyAuthentication, tasksController.getById);
 
 // edição
 routes.put("/:id", verifyAuthentication, tasksController.update);

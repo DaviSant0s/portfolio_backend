@@ -5,16 +5,14 @@ const { JWT_SECRET } = require('../configs/env');
 const verifyAuthentication = (req, res, next) => {
   const { authorization } = req.headers;
 
-  if(!authorization) {
-    return res.status(401).json({
-      error: '@authenticate/missing-token',
-      message: 'Token não fornecido!',
-    })
-  }
+  if(!authorization) return res.status(401).json({
+    error: "@authenticate/missing-token",
+    message: "Token not sent"
+  });
 
   const invalidTokenMessage = {
     error: '@authenticate/invalid-token',
-    message: 'Token fornecido é inválido!',
+    message: 'Token provided is invalid',
   }
 
   const token = authorization.split(' ')[1];
