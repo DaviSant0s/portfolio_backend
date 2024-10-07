@@ -22,7 +22,7 @@ const Task = db.define('Task', {
 
 });
 
-User.hasMany(Task);
+User.hasMany(Task, { onDelete: 'cascade' });
 Task.belongsTo(User);
 
 module.exports = Task;

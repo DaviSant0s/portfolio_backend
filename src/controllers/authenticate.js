@@ -1,6 +1,7 @@
 const User = require('../model/users');
 
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 const { JWT_SECRET } = require('../configs/env');
 const { compareHash } = require('../utils/hashProvider');
@@ -18,6 +19,10 @@ const login = async (req, res) => {
 
   if(!email) return res.status(400).json(loginErrorMessage("Email is required"));
   if(!password) return res.status(400).json(loginErrorMessage("Password is required"));
+
+  // validação do email
+  const isEmail = validator.isEmail(email);
+  if(!isEmail) return res.status(400).json(loginErrorMessage("Invalid email format"));
 
   try {
     const user = await User.findOne({raw: true, where: {email: email}});
